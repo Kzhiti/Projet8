@@ -2,10 +2,9 @@
 
 namespace App\Tests\Controller;
 
-use App\Tests\DataFixtures\DataFixtureTestCase;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class UserControllerTest extends DataFixtureTestCase
+class UserControllerTest extends WebTestCase
 {
     public function testListActionWithoutLogin()
     {

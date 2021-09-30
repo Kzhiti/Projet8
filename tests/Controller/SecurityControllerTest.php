@@ -2,10 +2,10 @@
 
 namespace App\Tests\Controller;
 
-use App\Tests\DataFixtures\DataFixtureTestCase;
+
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class SecurityControllerTest extends DataFixtureTestCase
+class SecurityControllerTest extends WebTestCase
 {
     public function testLogin()
     {
@@ -21,7 +21,7 @@ class SecurityControllerTest extends DataFixtureTestCase
         $form = $crawler->selectButton('Se connecter')->form();
         $form['_username'] = 'user';
         $form['_password'] = 'test';
-        $client->submit($form); 
+        $client->submit($form);
 
         $crawler = $client->followRedirect();
         static::assertSame(200, $client->getResponse()->getStatusCode());

@@ -3,10 +3,9 @@
 namespace App\Tests\Controller;
 
 use App\Tests\Controller\SecurityControllerTest;
-use App\Tests\DataFixtures\DataFixtureTestCase;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class TaskControllerTest extends DataFixtureTestCase
+class TaskControllerTest extends WebTestCase
 {
     public function testListActionWithoutLogin()
     {

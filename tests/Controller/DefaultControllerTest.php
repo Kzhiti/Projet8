@@ -2,7 +2,7 @@
 
 namespace App\Tests\Controller;
 
-use App\DataFixtures\TestFixtures;
+use App\DataFixtures;
 use App\Controller\DefaultController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Console\Input\StringInput;
@@ -12,7 +12,7 @@ class DefaultControllerTest extends WebTestCase
 {
     public function testIndexActionWithoutLogin()
     {
-        // If the user isn't logged, should redirect to the login page
+        // If the user isn't logged in, should redirect to the login page
         $client = static::createClient();
         $client->request('GET', '/');
         static::assertSame(302, $client->getResponse()->getStatusCode());

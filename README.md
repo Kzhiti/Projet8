@@ -5,11 +5,11 @@ Amélioration et documentation d'un projet existant ToDo & Co.
 ## Installation
 1. Clonez ou téléchargez le repository GitHub dans le dossier voulu :
 ```
-    git clone https://github.com/sorha/P8-ToDoAndCo.git
+    git clone https://github.com/Kzhiti/Projet8.git
 ```
-2. Configurez vos variables d'environnement tel que la connexion à la base de données dans le fichier `.env.local` qui devra être crée à la racine du projet en réalisant une copie du fichier `.env` ainsi que la connexion à la base de données de test dans le fichier `env.test`.
+2. Configurez vos variables d'environnement tel que la connexion à la base de données dans le fichier `.env.local` qui devra être crée à la racine du projet en réalisant une copie du fichier `.env`.
 
-3. Téléchargez et installez les dépendances du projet avec [Composer](https://getcomposer.org/download/) :
+3. Téléchargez et installez les dépendances du projet avec Composer :
 ```
     composer install
 ```
@@ -23,6 +23,6 @@ Amélioration et documentation d'un projet existant ToDo & Co.
 ```
 6. (Optionnel) Installez les fixtures pour avoir une démo de données fictives en développement :
 ```
-    php app/console doctrine:fixtures:load --env=dev --group=dev
+    php app/console doctrine:fixtures:load
 ```
-7. Félicitations le projet est installé correctement, vous pouvez désormais commencer à l'utiliser à votre guise !
+7. Félicitations le projet est installé correctement.

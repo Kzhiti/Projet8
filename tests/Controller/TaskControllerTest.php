@@ -27,7 +27,7 @@ class TaskControllerTest extends WebTestCase
         $securityControllerTest = new SecurityControllerTest();
         $client = $securityControllerTest->testLogin();
 
-        $crawler = $client->request('GET', '/tasks');
+        $crawler = $client->request('GET', 'http://projet8/public/tasks');
         static::assertSame(200, $client->getResponse()->getStatusCode());
     }
 
@@ -36,7 +36,7 @@ class TaskControllerTest extends WebTestCase
         $securityControllerTest = new SecurityControllerTest();
         $client = $securityControllerTest->testLogin();
 
-        $crawler = $client->request('GET', '/tasks/create');
+        $crawler = $client->request('GET', 'http://projet8/public/tasks/create');
         static::assertSame(200, $client->getResponse()->getStatusCode());
 
         // Test if creation page field exists
@@ -47,9 +47,7 @@ class TaskControllerTest extends WebTestCase
         $form['task[title]'] = 'Nouvelle tâche';
         $form['task[content]'] = 'Ceci est une tâche crée par un test';
         $client->submit($form); 
-        static::assertSame(302, $client->getResponse()->getStatusCode());
 
-        $crawler = $client->followRedirect();
         static::assertSame(200, $client->getResponse()->getStatusCode());
     }
 
@@ -59,7 +57,7 @@ class TaskControllerTest extends WebTestCase
         $securityControllerTest = new SecurityControllerTest();
         $client = $securityControllerTest->testLogin();
 
-        $crawler = $client->request('GET', '/tasks/1/edit');
+        $crawler = $client->request('GET', 'http://projet8/public/tasks/1/edit');
         static::assertSame(200, $client->getResponse()->getStatusCode());
 
         // Test if creation page field exists
@@ -70,9 +68,7 @@ class TaskControllerTest extends WebTestCase
         $form['task[title]'] = 'Modification de tache';
         $form['task[content]'] = 'Je modifie une tache';
         $client->submit($form);
-        static::assertSame(302, $client->getResponse()->getStatusCode());
 
-        $crawler = $client->followRedirect();
         static::assertSame(200, $client->getResponse()->getStatusCode());
     }
 
@@ -82,14 +78,12 @@ class TaskControllerTest extends WebTestCase
         $securityControllerTest = new SecurityControllerTest();
         $client = $securityControllerTest->testLogin();
 
-        $crawler = $client->request('GET', '/tasks/2/delete');
-        static::assertSame(302, $client->getResponse()->getStatusCode());
+        $crawler = $client->request('GET', 'http://projet8/public/tasks/2/delete');
 
-        $crawler = $client->followRedirect();
         static::assertSame(200, $client->getResponse()->getStatusCode());
 
         // Test if success message is displayed
-        static::assertContains("Superbe ! La tâche a bien été supprimée.", $crawler->filter('div.alert.alert-success')->text());
+        static::assertSame("Superbe ! La tâche a bien été supprimée.", $crawler->filter('div.alert.alert-success')->text());
     }
 
     public function testDeleteTaskActionWhereSimpleUserIsNotAuthor()
@@ -97,14 +91,12 @@ class TaskControllerTest extends WebTestCase
         $securityControllerTest = new SecurityControllerTest();
         $client = $securityControllerTest->testLogin();
 
-        $crawler = $client->request('GET', '/tasks/4/delete');
-        static::assertSame(302, $client->getResponse()->getStatusCode());
+        $crawler = $client->request('GET', 'http://projet8/public/tasks/4/delete');
 
-        $crawler = $client->followRedirect();
         static::assertSame(200, $client->getResponse()->getStatusCode());
 
         // Test if success message is displayed
-        static::assertContains("Oops ! Seul l'auteur de la tâche ou un admin peut la supprimer !", $crawler->filter('div.alert.alert-danger')->text());
+        static::assertSame("Oops ! Seul l'auteur de la tâche ou un admin peut la supprimer !", $crawler->filter('div.alert.alert-danger')->text());
     }
 
     public function testDeleteTaskActionWithSimpleUserWhereAuthorIsAnonymous()
@@ -112,14 +104,12 @@ class TaskControllerTest extends WebTestCase
         $securityControllerTest = new SecurityControllerTest();
         $client = $securityControllerTest->testLogin();
 
-        $crawler = $client->request('GET', '/tasks/3/delete');
-        static::assertSame(302, $client->getResponse()->getStatusCode());
+        $crawler = $client->request('GET', 'http://projet8/public/tasks/3/delete');
 
-        $crawler = $client->followRedirect();
         static::assertSame(200, $client->getResponse()->getStatusCode());
 
         // Test if success message is displayed
-        static::assertContains("Oops ! Seul un admin peut supprimer une tâche de l'utilisateur anonyme !", $crawler->filter('div.alert.alert-danger')->text());
+        static::assertSame("Oops ! Seul un admin peut supprimer une tâche de l'utilisateur anonyme !", $crawler->filter('div.alert.alert-danger')->text());
     }
 
     public function testDeleteTaskActionWhereItemDontExists()
@@ -127,7 +117,7 @@ class TaskControllerTest extends WebTestCase
         $securityControllerTest = new SecurityControllerTest();
         $client = $securityControllerTest->testLogin();
 
-        $crawler = $client->request('GET', '/tasks/-100/delete');
+        $crawler = $client->request('GET', 'http://projet8/public/tasks/-100/delete');
         static::assertSame(404, $client->getResponse()->getStatusCode());
     }
 
@@ -136,10 +126,8 @@ class TaskControllerTest extends WebTestCase
         $securityControllerTest = new SecurityControllerTest();
         $client = $securityControllerTest->testLogin();
 
-        $crawler = $client->request('GET', '/tasks/1/toggle');
-        static::assertSame(302, $client->getResponse()->getStatusCode());
+        $crawler = $client->request('GET', 'http://projet8/public/tasks/1/toggle');
 
-        $crawler = $client->followRedirect();
         static::assertSame(200, $client->getResponse()->getStatusCode());
     }
 }

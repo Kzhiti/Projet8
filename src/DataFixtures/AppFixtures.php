@@ -11,7 +11,9 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class AppFixtures extends Fixture implements FixtureGroupInterface
 {
-
+    /**
+     * @codeCoverageIgnore
+     */
     public static function getGroups(): array
     {
         return ['test'];
@@ -19,11 +21,17 @@ class AppFixtures extends Fixture implements FixtureGroupInterface
 
     private $encoder;
 
+    /**
+     * @codeCoverageIgnore
+     */
     public function __construct(UserPasswordEncoderInterface $encoder)
     {
         $this->encoder = $encoder;
     }
 
+    /**
+     * @codeCoverageIgnore
+     */
     public function load(ObjectManager $manager)
     {
           // Anonymous User

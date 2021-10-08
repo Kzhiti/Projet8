@@ -23,6 +23,6 @@ Amélioration et documentation d'un projet existant ToDo & Co.
 ```
 6. (Optionnel) Installez les fixtures pour avoir une démo de données fictives en développement :
 ```
-    php app/console doctrine:fixtures:load
+    php bin/console doctrine:fixtures:load
 ```
 7. Félicitations le projet est installé correctement.
